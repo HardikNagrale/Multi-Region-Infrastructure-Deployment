@@ -234,8 +234,7 @@ key_name    = "my-keypair"       # Replace with your key pair name
 
 Run the following command to initialize Terraform and download necessary plugins:
 
-
-'terraform init'
+Run terraform init
 
 
 ## Verification
