@@ -185,8 +185,58 @@ export AWS_SECRET_ACCESS_KEY="your-secret-access-key"
    aws_access_key_id = your-access-key-id
    aws_secret_access_key = your-secret-access-key
 
+## Terraform AWS Access and Repository Setup Guide
 
-### 3. Configure Terraform
+This document outlines the steps to set up Terraform with AWS access and how to clone a repository for managing infrastructure configurations.
+
+### Prerequisites
+
+Ensure you have the following:
+
+- An AWS account with appropriate permissions.
+- Terraform installed on your local machine.
+- Git installed on your local machine.
+
+
+### 3. Clone the Repository
+
+#### 3.1. Clone the Git Repository
+
+Use the following command to clone the Git repository containing the Terraform configuration:
+
+
+git clone https://github.com/HardikNagrale/Multi-Region-Infrastructure-Deployment.git
+
+
+#### 3.2. Navigate to the Repository Directory
+
+Move into the directory of the cloned repository:
+
+
+cd Multi-Region-Infrastructure-Deployment
+
+
+### 4. Terraform Configuration
+
+#### 4.1. Update Terraform Variables
+
+Open the `terraform.tfvars` file and customize the variables according to your deployment requirements. For example:
+
+
+region      = "us-east-1"       # Replace with your desired region
+subnet_id   = "subnet-12345678"  # Replace with your subnet ID
+key_name    = "my-keypair"       # Replace with your key pair name
+
+
+#### 4.2. Initialize Terraform
+
+Run the following command to initialize Terraform and download necessary plugins:
+
+
+terraform init
+
+
+### 5. Configure Terraform
 
 In your Terraform configuration files (e.g., `main.tf`, `variables.tf`), specify the AWS provider and region:
 
