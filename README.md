@@ -235,17 +235,7 @@ key_name    = "my-keypair"       # Replace with your key pair name
 Run the following command to initialize Terraform and download necessary plugins:
 
 
-terraform init
-
-
-### 5. Configure Terraform
-
-In your Terraform configuration files (e.g., `main.tf`, `variables.tf`), specify the AWS provider and region:
-
-
-provider "aws" {
-  region = "us-east-1"  # Replace with your desired region
-}
+'terraform init'
 
 
 ## Verification
