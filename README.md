@@ -135,4 +135,73 @@ A diagram showcasing the multi-region infrastructure deployment architecture is 
 ```
 
 This architecture diagram illustrates the interconnectedness of the various components across multiple regions, showcasing the resilience and scalability of the deployed infrastructure.
- 
+
+# Terraform AWS Access Setup Guide
+
+This document provides a step-by-step guide to set up Terraform with AWS access, enabling it to manage AWS resources.
+
+## Prerequisites
+
+Before proceeding, ensure you have the following:
+
+- An AWS account with appropriate permissions to create and manage resources.
+- Terraform installed on your local machine. You can download it from the [official Terraform website](https://www.terraform.io/downloads.html).
+- AWS CLI installed (optional but recommended). You can download it from the [AWS Command Line Interface website](https://aws.amazon.com/cli/).
+
+## Steps to Setup AWS Access for Terraform
+
+### 1. Create an IAM User
+
+1. Log in to the AWS Management Console.
+2. Go to the IAM service.
+3. Click on "Users" in the left navigation pane.
+4. Click on "Add user".
+5. Enter a username for the IAM user (e.g., "terraform").
+6. Select "Programmatic access" as the access type.
+7. Click on "Next: Permissions".
+8. Attach the necessary permissions policy to the user (e.g., `AmazonEC2FullAccess`, `AmazonRDSFullAccess`, etc.).
+9. Click on "Next: Tags" (optional) and add any tags if needed.
+10. Click on "Next: Review".
+11. Review the user details and permissions, then click on "Create user".
+12. Note down the "Access key ID" and "Secret access key" displayed on the next screen. These credentials will be used by Terraform to authenticate with AWS.
+
+### 2. Configure AWS Credentials
+
+#### Using Environment Variables
+
+Set the following environment variables with the access key ID and secret access key of the IAM user:
+
+
+export AWS_ACCESS_KEY_ID="your-access-key-id"
+export AWS_SECRET_ACCESS_KEY="your-secret-access-key"
+
+#### Using AWS Credentials File
+
+1. Create a credentials file named `credentials` in the `.aws` directory in your home directory (e.g., `~/.aws/credentials`).
+2. Add the access key ID and secret access key of the IAM user to the credentials file:
+
+
+   [default]
+   aws_access_key_id = your-access-key-id
+   aws_secret_access_key = your-secret-access-key
+
+
+### 3. Configure Terraform
+
+In your Terraform configuration files (e.g., `main.tf`, `variables.tf`), specify the AWS provider and region:
+
+
+provider "aws" {
+  region = "us-east-1"  # Replace with your desired region
+}
+
+
+## Verification
+
+To verify that Terraform has access to AWS:
+
+1. Run `terraform init` in your Terraform project directory to initialize Terraform.
+2. Run `terraform plan` to create an execution plan and verify that Terraform can authenticate with AWS.
+3. If the plan looks correct, apply the changes using `terraform apply` to create or update resources on AWS.
+
+With these steps, you have successfully configured Terraform with AWS access, allowing it to manage AWS resources. Remember to follow security best practices and restrict permissions to the minimum required for your Terraform operations.
